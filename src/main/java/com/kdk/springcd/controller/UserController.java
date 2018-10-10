@@ -30,12 +30,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "updatePwd", method = RequestMethod.POST)
-    public void UpdatePwd(@RequestParam String user_id,@RequestParam String user_pwd) throws Exception{
+    public String UpdatePwd(@RequestParam String user_id,@RequestParam String user_pwd) throws Exception{
         try{
             UserInfo userInfo = userService.GetUser(user_id);
             userService.updatePwd(user_id,user_pwd);
+            return "success";
         }catch (Exception e){
-
+            return "There is no such user.";
         }
     }
 }

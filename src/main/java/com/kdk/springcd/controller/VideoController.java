@@ -24,7 +24,9 @@ public class VideoController {
     }
     @RequestMapping(value = "likeVideo", method = RequestMethod.POST)
     public void likeVideo(String user_id, String video_id) throws Exception {
-        videoService.likeVideo(video_id, user_id);
+        if (videoService.likeVideo(video_id, user_id));
+        else
+            videoService.likeVideoCancel(video_id, user_id);
     }
     @RequestMapping(value = "collectVideo", method = RequestMethod.POST)
     public void collectVideo(String user_id, String video_id){

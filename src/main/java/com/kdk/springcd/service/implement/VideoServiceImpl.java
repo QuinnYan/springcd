@@ -2,6 +2,7 @@ package com.kdk.springcd.service.implement;
 
 import com.kdk.springcd.entity.VideoInfo;
 import com.kdk.springcd.service.VideoService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,11 +53,12 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void likeVideo(String video_id, String user_id) throws Exception{
+    public Boolean likeVideo(String video_id, String user_id) throws Exception{
 
         try{
             Map<String,Object> map = jdbcTemplate.queryForMap( "select * from video_like_person where video_id = ? AND user_id = ?",video_id,user_id);
             System.out.println("have like already");
+
         }catch(Exception e){
             System.out.println("no like now");
             // 点赞数增加
@@ -65,26 +67,28 @@ public class VideoServiceImpl implements VideoService {
             //  在连接表中加入条目
             sql = "insert into video_like_person (video_id, user_id) values(?,?)";
             jdbcTemplate.update(sql,video_id,user_id);
+            return true;
         }
-
+        return false;
     }
 
     @Override
-    public  void likeVideoCancel(String video_id, String user_id)throws Exception{
+    public Boolean likeVideoCancel(String video_id, String user_id)throws Exception{
         try{
             Map<String,Object> map = jdbcTemplate.queryForMap( "select * from video_like_person where video_id = ? AND user_id = ?",video_id,user_id);
             if(null != map){
                 // 点赞数减少
                 String sql = "update video_all set video_like = video_like - 1 where video_id = ?";
-
-                //delete  from user_info  where user_id = ?
-                //  在连接表中加入条目
+                jdbcTemplate.update(sql,video_id);
+                //  在连接表中去除条目
                 sql = "delete from video_like_person where video_id = ? AND user_id = ?";
                 jdbcTemplate.update(sql,video_id,user_id);
+
             }
         }catch (Exception e){
-
+            return false;
         }
+        return true;
     }
 
     @Override

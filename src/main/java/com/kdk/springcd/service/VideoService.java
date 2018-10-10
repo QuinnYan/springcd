@@ -1,6 +1,8 @@
 package com.kdk.springcd.service;
 import com.kdk.springcd.entity.VideoInfo;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import javax.sound.sampled.BooleanControl;
 import java.util.List;
 
 
@@ -30,14 +32,14 @@ public interface VideoService {
      * @param video_id
      * @param user_id
      */
-    void likeVideo(String video_id, String user_id) throws Exception;
+    Boolean likeVideo(String video_id, String user_id) throws Exception;
 
     /**
      *取消点赞
      * @param video_id
      * @param user_id
      */
-    void likeVideoCancel(String video_id, String user_id)throws Exception;
+    Boolean likeVideoCancel(String video_id, String user_id)throws Exception;
 
     /**
      *
