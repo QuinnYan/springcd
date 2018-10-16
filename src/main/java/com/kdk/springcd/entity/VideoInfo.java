@@ -4,8 +4,10 @@ public class VideoInfo {
 
     private String VideoID;
     private String VideoURL;
+
+    private String VideoDescription;
     private Integer VideoLike;
-    private String VideoCollection;
+    private Integer VideoCollection;
     private String UserID;
 
     public String getVideoID() {
@@ -32,11 +34,11 @@ public class VideoInfo {
         VideoLike = videoLike;
     }
 
-    public String getVideoCollection() {
+    public Integer getVideoCollection() {
         return VideoCollection;
     }
 
-    public void setVideoCollection(String videoCollection) {
+    public void setVideoCollection(Integer videoCollection) {
         VideoCollection = videoCollection;
     }
 
@@ -46,5 +48,13 @@ public class VideoInfo {
 
     public void setUserID(String userID) {
         UserID = userID;
+    }
+
+    public String getVideoDescription() {
+        return VideoDescription;
+    }
+
+    public void setVideoDescription(String videoDescription) {
+        VideoDescription = videoDescription;
     }
 }

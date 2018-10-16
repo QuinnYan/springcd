@@ -47,4 +47,22 @@ public interface VideoService {
      * @param user_id
      */
     void collectVideo(String video_id, String user_id);
+
+    /**
+     *
+     * @param video_name
+     * @return
+     */
+    List<VideoInfo> getVideoByName(String video_name);
+
+    /**
+     *
+     * @param file
+     * @param filePath
+     * @param fileName
+     * @param video_description
+     * @param user_ID
+     * @throws Exception
+     */
+    void uploadVideo(byte[] file, String filePath, String fileName, String video_description, String user_ID) throws Exception;
 }
