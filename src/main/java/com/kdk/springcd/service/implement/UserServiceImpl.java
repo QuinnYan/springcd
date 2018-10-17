@@ -30,7 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void verifyAccount(String user_id, String user_pwd){
-        String sql = "select * from user_info where user_id= ？ and user_pwd= ？;";
+        String sql = "select * from user_info where user_id= ? and user_pwd= ?;";
+
         Map<String,Object> map = jdbcTemplate.queryForMap(sql,user_id,user_pwd);
 
     }
